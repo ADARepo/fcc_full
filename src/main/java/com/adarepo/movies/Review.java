@@ -19,4 +19,8 @@ public class Review
 
     private String body;
     
+    public Review(String Body)
+    {
+        this.body = body;
+    }
 }
