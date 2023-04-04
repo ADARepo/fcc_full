@@ -1,5 +1,7 @@
 package com.adarepo.movies;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,7 +19,7 @@ public class ReviewService
 
     public Review createReview(String reviewBody, String imdbId)
     {
-        Review review = reviewRepository.insert(new Review(reviewBody));
+        Review review = reviewRepository.insert(new Review(reviewBody, LocalDateTime.now(), LocalDateTime.now()));
 
         mongoTemplate.update(Movie.class)
             .matching(Criteria.where("imdbId").is(imdbId))
