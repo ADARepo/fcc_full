@@ -16,6 +16,8 @@ public class MovieService {
         return repository.findAll();
     }
     public Optional<Movie> findMovieByImdbId(String imdbId) {
-        return repository.findMovieByImdbId(imdbId);
+        Optional<Movie> ret = repository.findMovieByImdbId(imdbId);
+        System.out.println(ret);
+        return ret;
     }
 }
