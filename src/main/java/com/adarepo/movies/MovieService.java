@@ -1,7 +1,6 @@
 package com.adarepo.movies;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,7 @@ public class MovieService {
     public List<Movie> findAllMovies() {
         return repository.findAll();
     }
-    public Optional<Movie> findMovieByImdbId(String imdbId) {
-        Optional<Movie> ret = repository.findMovieByImdbId(imdbId);
-        System.out.println(ret);
-        return ret;
+    public List<Movie> findMovieByTitle(String title) {
+        return repository.findByTitleContainingIgnoreCase(title);
     }
 }

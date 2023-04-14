@@ -15,24 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/v1/movies")
+@RequestMapping("/api/v1/movies/")
 public class MovieController 
 {
     @Autowired
     private MovieService movieService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies()
     {
         return new ResponseEntity<List<Movie>>(movieService.findAllMovies(), HttpStatus.OK);
     }
 
-    @GetMapping("/{imdbId}")
-    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId)
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("{title}")
+    public ResponseEntity<List<Movie>> getSingleMovie(@PathVariable String title)
     {
-        System.out.println(imdbId);
-        return new ResponseEntity<Optional<Movie>>(movieService.findMovieByImdbId(imdbId), HttpStatus.OK);
+        // System.out.println(title);
+        return new ResponseEntity<List<Movie>>(movieService.findMovieByTitle(title), HttpStatus.OK);
     }
 
 }
